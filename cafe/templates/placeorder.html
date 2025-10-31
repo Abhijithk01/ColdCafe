@@ -1,0 +1,89 @@
+{% extends "master.html" %}
+{% block content %}
+
+<h1 style="color:bisque; padding-left:50px;text-align: center; "> Place Order</h1>
+
+
+ <div  class="card bg-light border border-2 rounded p-5 h-25 w-50">
+  <h3>Full Name : <span id="name">{{order.firstname}}  {{order.lastname}}</span></h3><br><br>
+  
+ <h4>Address: {{order.address}}</h4><br><br>
+  
+  <h4>Street Address : {{order.streetaddress}}</h4><br><br>
+
+  <h4 >Mobile Number : <span id="phone">{{order.mobilenumber}}</span></h4><br><br>
+  
+  <h4 >Email : <span id="email">{{order.email}}</span></h4>
+  
+ </div>
+
+ <div class="card bg-light border border-2 rounded  p-5 h-25 w-50">
+
+    
+    <h3 class="color text-success w-50">Complete Payment for – ₹{{amount2|floatformat:2 }}</h3>
+    <div class="row">
+
+    <button type="button" id="rzp" class="btn btn-success col-4 m-1">Pay Now</button>
+     <button type="button" class="btn btn-danger col-4 m-1">Cancel</button>
+</div>
+ </div>
+
+
+
+
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+name=document.getElementById("name").innerHTML;
+email=document.getElementById("email").innerHTML;
+phone=document.getElementById("phone").innerHTML;
+
+console.log(name,email,phone)
+
+var options = {
+    "key":"rzp_test_RIwFh5XRXmsLtl", // Enter the Key ID generated from the Dashboard
+    "amount": "{{amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "LATTE CAFE", //your business name
+    "description": "Discover your favorites and bring the experience home",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{razorpay_order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        // window.location.href=`http://127.0.0.1:8000/purchased/${response.razorpay_payment_id}/${response.razorpay_order_id}/${response.razorpay_signature}/`
+        window.location.href=`http://127.0.0.1:8000/purchased/${response.razorpay_payment_id}/${response.razorpay_order_id}/`
+
+        /*alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)*/
+    },
+    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+        "name": name, //your customer's name
+        "email":email,
+        "contact":phone  //Provide the customer's phone number for better conversion rates 
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+  window.location.href=`http://127.0.0.1:8000/payfail/`
+
+      /*  alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);*/
+});
+document.getElementById('rzp').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endblock%}

@@ -1,0 +1,42 @@
+
+{%extends "master.html"%}
+  {% block content %}
+  <h1 style="color: aliceblue;">Product Details</h1>
+  <div class=" p-3">
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ prod.banner.url  }}"   class="img-fluid rounded-start" alt="{{po.title}}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+             <h3 class="card-title">P Item:{{prod.pitem}}</h3><hr> 
+              <h3 class="card-title">P Name:{{prod.pname}}</h3> <hr>
+              <h4 class="card-title">P Rate:{{prod.prate}}</h4> <hr>
+              <h4 class="card-title">P Qty:{{prod.pqty}}</h4>
+            <p class="card-text"></p><hr>
+            
+
+            <div>
+              <a class="btn btn-warning" href="/{{prod.id}}/buynow/">Buy now</a>
+            </div><hr>
+
+            <div>
+              <a class="btn btn-info" href="update/">Update</a>
+            <a class="btn btn-danger" href="delete/">delete</a>
+            </div><br><hr>
+
+            <div>
+              <a class="btn btn-secondary" href="/products/">Back</a>
+              <a style="position: absolute; right: 150px;" class="btn btn-primary" href="/">Back to Homepage</a>
+          </div><br>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+      
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+    
+

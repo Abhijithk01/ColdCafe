@@ -1,0 +1,70 @@
+
+
+{%extends "master.html"%}
+  {% block content %}
+
+
+    <!-- <div  class="col-md-6 offset-md-3">
+        
+    </div> -->
+
+
+
+  <!--<table>
+       {%for f in car%}
+     <tr>"text-decoration-none" href="menu/{{f.id}}/ ">
+        <div class="col">
+            <div class="card">
+              <img src="https://www.titanui.com/wp-content/uploads/2013/03/01/Vector-Retro-Coffee-Shop-Menu-Cover-Design-04.jpg "  class="card-img-top" alt="">
+              <div class="card-body">
+                <h5 class="card-title">{{f.pitem}} : {{f.prate}} :{{f.pqty}} : {{f.quandity}} : {{f.total}}</h5>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </div>
+        
+        {% endfor %}
+        </a></tr>table -->
+        <div class="container">
+        <div class="card bg-light border border-2 rounded ">
+        <div style="margin-top:20px; padding: 50px; ">
+
+          <h1 class="text-center fs-1 text-danger">ORDER SUMMERY</h1>
+
+        <table class="table">
+          <tr><th>Item Number</th> <th>Item ID</th>  <th>Coffee/Tea/Juice</th> <th>Item Name</th>   <th>Quandity</th> <th>Prize</th>  <th>Total</th> <th> </th>  </tr>
+          {% for f in car %}
+          <tr><td>{{forloop.counter}}</td><td>{{f.id}}</td> <td>{{f.pitem}}</td> <td>{{f.pname}}</td>  <td>{{f.quandity}}</td> <td>{{f.prate}}</td>  <td class="to">{{f.total}}</td> <td> <a class="btn btn-danger" href="{{f.id}}/delete/">Delete</a></td></tr> 
+          {% endfor %}
+          <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td class="text-dark fw-bold fs-3">Total Amount To Pay:</td> <td id="ty" class="text-success fw-bold fs-3"></td> </tr>
+        </table>
+
+       
+        </div>
+
+
+
+    </div><br><br>
+    
+    <div class="btn btn-light">
+        <a class="text-decoration-none"  href="/">Back to home</a> 
+      </div>
+
+      <div class="btn btn-info">
+        <a class="text-decoration-none color text-light "  href="/ordernow/">Order Now</a>
+      </div>
+   
+    </div>
+
+<script>
+  let a=document.getElementsByClassName("to");
+  let sum=0
+  for (let r of a){
+    sum=sum+Number(r.innerHTML)
+    document.getElementById("ty").innerHTML=sum
+  }
+</script>
+
+
+    {% endblock %}
+    

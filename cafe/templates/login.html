@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+{% block title %}
+Login
+
+{% endblock %}
+
+
+
+{% block content %}
+<br>
+
+<div class="container border border-primary m-auto w-25 p-5 rounded " style="background-color: rgb(247, 247, 247);">
+<form action="/loginp/" method="POST">
+    
+    {% csrf_token %}
+    
+    <div class="col-md-12">
+        <label for="username" class="form-label text-dark">Username</label>
+        <input type="text"  class="form-control bg-secondary-subtle" name="username" id="username">
+    </div>
+
+    <div class="col-md-12">
+        <label for="password"  class="form-label text-dark">Password</label>
+        <input type="password"  class="form-control bg-secondary-subtle" name="psw" id="psw">
+    </div><br><br>
+    <div class="col-12">
+    <input type="submit" class="btn btn-primary" value="Login">
+    </div>
+  
+
+</form>
+{% if error_message %}
+  <p style="color:red;">{{ error_message }}</p>
+{% endif %}
+<h6>don't have an account<a href="/registernow/">Register now</a></h6>
+
+  </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "master.html" %}
+{% block title %}
+Register
+
+{% endblock %}
+
+{% block content %}
+
+<h1 style="color: aliceblue;padding-left:300px;" >REGISTER YOUR NAME AND SET YOUR PASSWORD</h1>
+<div class="container w-25 ">
+<form action="submit/" method="POST">
+        {% csrf_token %}
+
+
+    <div>
+        <label for="reg" class="form-label text-light">User Name</label >
+        <input type="text" class="form-control bg-secondary-subtle" name="username" id="username" required>
+    </div>
+    
+    <div><label for="email"class="form-label text-light" >Email</label>
+        <input type="email" class="form-control bg-secondary-subtle" name="email" id="email">
+    </div>    
+
+    <div>
+    <label for="password" class="form-label text-light">password</label>
+    <input type="password" class="form-control bg-secondary-subtle"  name="psw" id="psw">
+    </div>
+
+    <div>
+    <label for="re password" class="form-label text-light">Re enter password</label>
+    <input type="password" class="form-control bg-secondary-subtle" name="psw-repeat" id="psw-repeat">
+    </div><br><br>
+     <div class="col-12">
+        <input type="submit" class="btn btn-primary m-2" value="Register">
+   <a class="btn btn-danger" href="">Cancel</a>
+
+    </div>
+
+
+</form>
+{% if error %}
+  <p style="color:red;">{{ error }}</p>
+{% endif %}
+</div>
+{% endblock %}

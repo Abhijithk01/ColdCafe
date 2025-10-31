@@ -1,0 +1,24 @@
+{% extends 'master.html'%}
+
+{%block title %}
+
+   {{post.title}}
+
+{% endblock %}
+
+{% block content %}
+{% for po in post%}
+
+    <section style="color: aliceblue;">
+      <img 
+            class="banner"
+            src="{{ po.banner.url  }}" 
+            alt="{{po.title}}"
+
+            />
+            <h1>{{po.title}}</h1>
+            <p>{{po.date}}</p>
+            <p>{{po.body}}</p>
+    </section>
+  {% endfor %}
+{% endblock %}

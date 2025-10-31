@@ -1,0 +1,54 @@
+
+    {% extends "master.html" %}
+{% block content %}
+
+ <div style="color: aliceblue;" class="container border p-5" >
+
+  <h1 class="text-center fs-1 " >BUY NOW</h1>
+  <form class="row g-3 " action="buynowprocess/" method="POST">
+      {% csrf_token %}
+
+        <div class="col-md-12">
+      
+          <h3>{{pr.pitem}}</h3>
+   
+
+        
+
+          <h3>{{pr.pname}}</h3>
+
+        </div>
+
+
+        <div class="col-12">
+  
+          <h3>{{pr.pqty}}</h3>
+  
+          </div>
+
+        <div class="col-12">
+
+          <h3>Rs.{{pr.prate}}</h3>
+
+        </div>
+
+       
+
+        <div class="col-12">
+          <label for="quandity" class="form-label">Quandity</label>
+          <input type="number" class="form-control" id="quandity" name="quandity">
+
+          </div>
+
+          
+          
+        
+      </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a class="btn btn-danger" href="carts/">Cancel</a>
+        </div>
+      </form>
+ </div>
+ {% endblock %}

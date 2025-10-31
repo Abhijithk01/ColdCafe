@@ -1,0 +1,38 @@
+
+    {% extends "master.html" %}
+{% block content %}
+
+ <div style="color: aliceblue;" class="container border p-5" >
+
+  <h1 class="text-center fs-1 " >UPDATE</h1>
+  <form class="row g-3 " action="addupdateproducts/" method="POST">
+      {% csrf_token %}
+
+        <div class="col-md-6">
+          <label for="pitem" class="form-label">P Item</label>
+          <input type="text" class="form-control" id="pitem" name="pitem">
+        </div>
+
+        <div class="col-md-6">
+          <label for="pname" class="form-label">P Name</label>
+          <input type="text" class="form-control" id="pname" name="pname">
+        </div>
+
+        <div class="col-12">
+          <label for="prate" class="form-label">P Rate</label>
+          <input type="number" class="form-control" id="prate" name="prate">
+        </div>
+
+        <div class="col-12">
+          <label for="pqty" class="form-label">P Qty</label>
+          <input type="number" class="form-control" id="pqty" name="pqty">
+        </div>
+          
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a class="btn btn-danger" href="/">Cancel</a>
+        </div>
+      </form>
+ </div>
+ {% endblock %}

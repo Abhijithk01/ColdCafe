@@ -1,0 +1,92 @@
+
+ 
+    {% extends "master.html" %}
+    {% block content %}
+
+
+     <div style="color: aliceblue; margin-top: 40px;" class="container border p-5 color bg-light " >
+      <div class="color bg-light">
+       <div class="container">
+        <div class="card bg-light border border-2 rounded ">
+        <div style="margin-top:20px; padding: 50px; ">
+
+          <h1 class="text-center fs-1 text-danger">ORDER SUMMERY</h1>
+
+        <table class="table">
+          <tr><th>Item Number</th> <th>Item ID</th>  <th>Coffee/Tea/Juice</th> <th>Item Name</th>   <th>Quandity</th> <th>Prize</th>  <th>Total</th> <th> </th>  </tr>
+          {% for f in car %}
+          <tr><td>{{forloop.counter}}</td><td>{{f.id}}</td> <td>{{f.pitem}}</td> <td>{{f.pname}}</td>  <td>{{f.quandity}}</td> <td>{{f.prate}}</td>  <td class="to">{{f.total}}</td> <td> <a class="btn btn-danger" href="{{f.id}}/delete/">Delete</a></td></tr> 
+          {% endfor %}
+          <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td class="text-dark fw-bold fs-3">Total Amount To Pay:</td> <td id="ty" class="text-success fw-bold fs-3"></td> </tr>
+        </table>
+
+       
+        </div>
+
+
+
+    </div><br><br>
+    
+
+   
+    </div>
+
+<script>
+  let a=document.getElementsByClassName("to");
+  let sum=0
+  for (let r of a){
+    sum=sum+Number(r.innerHTML)
+    document.getElementById("ty").innerHTML=sum
+  }
+</script><br><br><br>
+
+    
+
+ <form class="row g-3 " action="addordernowprocess/" method="POST">
+          {% csrf_token %}
+
+    <div class="col-md-6">
+        <label for="fname" class="form-label text-dark">First Name :</label>
+        <input type="text" class="form-control bg-secondary-subtle" id="firstname" name="firstname">
+      </div>
+
+      <div class="col-md-6">
+        <label for="lname" class="form-label text-dark">Last Name :</label>
+        <input type="text" class="form-control bg-secondary-subtle" id="lastname" name="lastname">
+      </div>
+
+      <div class="col-12">
+        <label for="address" class="form-label text-dark">Address :</label>
+        <input type="text" class="form-control bg-secondary-subtle" id="address" name="address">
+      </div>
+
+      <div class="col-12">
+        <label for="street address"class="form-label text-dark">Street Address :</label>
+        <input type="text"class="form-control bg-secondary-subtle" id="streetaddress" name="streetaddress">
+      </div>
+
+      <div class="col-12">
+        <label for="mobilenumber" class="form-label text-dark">Mobile Number :</label>
+        <input type="number" class="form-control bg-secondary-subtle" id="mobilenumber" name="mobilenumber">
+      </div>
+
+      <div class="col-12">
+        <label for="email" class="form-label text-dark">Email:</label>
+        <input type="email" class="form-control bg-secondary-subtle" id="email" name="email">
+      </div>
+
+      <div class="col-12">
+        <label for="tot" class="form-label text-dark">Totalvalue :</label>
+        <input type="number" class="form-control bg-secondary-subtle" id="totfull" name="totfull" value="{{su}}" readonly >
+      </div>
+
+ <div class="col-12">
+  <button type="submit" class="btn btn-primary">Place Order</button>
+  <a class="btn btn-danger" href="/cart/">Cancel</a>
+
+</div>
+ </form>
+     </div>
+    </div>
+    
+     {% endblock %}
